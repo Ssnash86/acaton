@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le BiblioBus!
+{% endblock %}
+
+{% block body %}
+	<main>
+		<h1 class="flex text-4xl font-bold underline justify-center m-4">Le BiblioBus</h1>
+		<section class="w-[90vw] mx-auto my-6">
+			<h2 class="text-xl underline m-4">Qui somme nous :</h2>
+			<p class="w-[70vw] mx-auto">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+		</section>
+		<h2 class="text-xl underline w-[90vw] mx-auto my-6">Actualités :</h2>
+		<section id="image-carousel" class="splide flex border mx-[10%] py-4 shadow-2xl bg-white " aria-label="Beautiful Images">
+			<div class="splide__track container mx-auto">
+				<ul class="splide__list">
+					{% for actus in actu %}
+						<li class="splide__slide flex ">
+							<div class="">
+								<img class="flex h-[30vh] w-auto p-4 " src="{{asset(actus.img)}}" alt="">
+							</div>
+							<div class="flex flex-col items-center gap-6 border-2 m-[5%] w-[60%]">
+								<h3 class="uppercase underline my-4">{{actus.titre}}</h3>
+								<p class="m-6">{{actus.description}}</p>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</section>
+		<h2 class="text-xl underline w-[90vw] mx-auto my-6">Librairies :</h2>
+
+		<section class="grid grid-cols-3 w-[80vw] mx-auto gap-4">
+			{% for livres in livre %}
+				<div class=" bg-white flex flex-col items-center gap-4 p-4 rounded-2xl">
+				<h3 class="font-bold underline">{{livres.titre}}</h3>
+					<div class="flex gap-4">
+						<img class="min-w-[30%] h-auto" src="{{asset(livres.img)}}" alt="image du livre">
+						<p style="display:-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:7;overflow: hidden;text-overflow: ellipsis">{{livres.resume}}</p>
+					</div>
+					<div class="flex p-4 w-[80%] items-center">
+					<img class="w-10 h-10 rounded-full mr-4" src="{{asset(livres.auteur.img)}}" alt="image de l'auteur">
+					<p>{{livres.auteur.nom}} {{livres.auteur.prenom}}</p>
+					</div>
+				</div>
+
+			{% endfor %}
+		</section>
+
+		<h2 class="text-xl underline w-[90vw] mx-auto my-6">Auteurs :</h2>
+		<section class="grid grid-cols-1 lg:grid-cols-3 gap-4 w-[70vw] mx-auto p-[2%] bg-white rounded-xl">
+			{% for auteurs in auteur %}
+				{% if auteurs.prime == 1 %}
+					<div class="max-w-sm rounded overflow-hidden shadow-xl">
+						<img class="w-full" src="{{asset(auteurs.img)}}" alt="Profils Auteurs">
+						<div class="px-6 py-4">
+							<div class="text-lg mb-2">
+								<span class="text-xl ">{{auteurs.nom}}</span>
+								{{auteurs.prenom}}</div>
+							<p class="text-gray-700 text-base truncate">{{auteurs.description}}</p>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</section>
+		<h2 class="text-xl underline w-[90vw] mx-auto my-6">Commentaires récents :</h2>
+		{% for commentaires in commentaire  %}
+			<section class="flex flex-col w-[60%] mx-auto gap-4 shadow-lg m-4 p-4">
+				<h3 class="font-bold">{{commentaires.titre}}</h3>
+				<p class="p-4">{{commentaires.description}}</p>
+				<p class="underline italic">{{commentaires.pseudo.pseudo}}</p>
+			</section>
+		{% endfor %}
+
+	</main>
+
+{% endblock %}

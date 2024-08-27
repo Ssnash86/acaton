@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre catalogue de livres{% endblock %}
+
+{% block body %}
+<main>
+<h2 class="underline text-xl text-white m-6 font-bold">Notre catalogue de livre :</h2>
+<section class="grid grid-cols-3 w-[80vw] mx-auto gap-4">
+			{% for livres in livre %}
+				<div class=" bg-white flex flex-col items-center gap-4 p-4 rounded-2xl">
+				<h3 class="font-bold underline">{{livres.titre}}</h3>
+					<div class="flex gap-4">
+						<img class="min-w-[30%] h-auto" src="{{asset(livres.img)}}" alt="image du livre">
+						<p style="display:-webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:7;overflow: hidden;text-overflow: ellipsis">{{livres.resume}}</p>
+					</div>
+					<div class="flex p-4 w-[80%] items-center">
+					<img class="w-10 h-10 rounded-full mr-4" src="{{asset(livres.auteur.img)}}" alt="image de l'auteur">
+					<p>{{livres.auteur.nom}} {{livres.auteur.prenom}}</p>
+					</div>
+				</div>
+			{% endfor %}
+            {{ knp_pagination_render(livre) }}
+		</section>
+</main>
+{% endblock %}

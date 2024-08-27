@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!
+{% endblock %}
+
+{% block body %}
+	<main>
+		
+		<div class="h-[60vh] w-[60vw] rounded-xl mx-auto border-4 border m-8 flex flex-col gap-4 p-4">
+        <h2 class="underline">Se connecter :</h2>
+			<form action="{{path('app_login')}}" method="post" class="flex flex-col w-[60%] gap-4 mx-auto ">
+			<label for="" class="underline">Pseudo :</label>
+				<input type="text" name="_username" value="{{lastpseudo}}" placeholder="Votre adresse Mail" class="h-12">
+				<label for="" class="underline">Mot de passe :</label>
+				<input type="password" name="_password" placeholder="Votre mot de passe" class="h-12">
+				<button class="m-4 border-2 rounded-xl bg-white " type="submit">Connexion</button>
+			</form>
+            </div>
+			{% if error %}
+				{{error.messageKey}}
+			{% endif %}
+		
+	</main>
+
+{% endblock %}

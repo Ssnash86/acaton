@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Auteurs{% endblock %}
+
+{% block body %}
+ <h2 class="underline text-xl text-white m-6 font-bold">Nos auteurs :</h2>
+ <section class="grid grid-cols-1 lg:grid-cols-3 gap-4 w-[70vw] mx-auto p-[2%] bg-white rounded-xl">
+			{% for auteurs in auteur %}
+					<a href="{{path('app_auteurs_desc',{id:auteurs.id})}}"class="max-w-sm rounded overflow-hidden shadow-xl">
+						<img class="w-full" src="{{asset(auteurs.img)}}" alt="Profils Auteurs">
+						<div class="px-6 py-4">
+							<div class="text-lg mb-2">
+								<span class="text-xl ">{{auteurs.nom}}</span>
+								{{auteurs.prenom}}</div>
+							<p class="text-gray-700 text-base truncate">{{auteurs.description}}</p>
+						</div>
+					</a>
+			{% endfor %}
+            {{ knp_pagination_render(auteur) }}
+		</section>
+{% endblock %}

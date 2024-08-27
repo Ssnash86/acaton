@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="h-[60vh] w-[60vw] rounded-xl mx-auto border-4 border m-8 flex flex-col gap-4 p-4">
+			<h2 class="underline">S'inscrire :</h2>
+
+			{{ form_errors(registrationForm) }}
+
+			{{ form_start(registrationForm) }}
+			{{ form_widget(registrationForm.email)  }}
+			{{ form_widget(registrationForm.plainPassword, {
+        }) }}
+			<button type="submit" class="btn m-4 border-2 rounded-xl bg-white">Register</button>
+			{{ form_end(registrationForm) }}
+            </div>
+		</main>
+	{% endblock %}
